@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/MainGui/SubPanelLoadTerrainData/SubPanelLoadTerrainData.cs" type="Script" id=1]
+
+[node name="SubPanelLoadTerrainData" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 80 )
+rect_clip_content = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -323.0
+margin_top = -176.0
+margin_right = 323.0
+margin_bottom = 185.0
+
+[node name="vbc" type="VBoxContainer" parent="panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="panel/vbc"]
+margin_right = 646.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+color = Color( 0.0117647, 0.223529, 0, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="panel/vbc"]
+margin_top = 14.0
+margin_right = 646.0
+margin_bottom = 356.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="lblTitle" type="Label" parent="panel/vbc/vbc"]
+self_modulate = Color( 0.341176, 0.890196, 0, 1 )
+margin_right = 646.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "LOAD TERRAIN"
+align = 1
+valign = 1
+
+[node name="Panel" type="Panel" parent="panel/vbc/vbc"]
+self_modulate = Color( 0.72549, 0.72549, 0.72549, 1 )
+margin_top = 24.0
+margin_right = 646.0
+margin_bottom = 290.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="panel/vbc/vbc/Panel"]
+margin_left = 6.0
+margin_top = 1.0
+margin_right = 638.0
+margin_bottom = 261.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+scroll_horizontal_enabled = false
+scroll_deadzone = 1
+
+[node name="list" type="VBoxContainer" parent="panel/vbc/vbc/Panel/ScrollContainer"]
+margin_right = 632.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="panel/vbc/vbc/Panel/ScrollContainer/list"]
+margin_right = 632.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+text = "File1"
+
+[node name="lblSelectedPath" type="Label" parent="panel/vbc/vbc"]
+margin_top = 294.0
+margin_right = 646.0
+margin_bottom = 308.0
+text = "Path Actual"
+
+[node name="hbc" type="HBoxContainer" parent="panel/vbc/vbc"]
+editor/display_folded = true
+margin_top = 312.0
+margin_right = 646.0
+margin_bottom = 342.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="buCancel" type="Button" parent="panel/vbc/vbc/hbc"]
+margin_left = 40.0
+margin_right = 190.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_vertical = 9
+text = "CANCEL"
+
+[node name="space" type="Control" parent="panel/vbc/vbc/hbc"]
+margin_left = 194.0
+margin_right = 269.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 75, 0 )
+
+[node name="buDelete" type="Button" parent="panel/vbc/vbc/hbc"]
+self_modulate = Color( 1, 0, 0, 1 )
+margin_left = 273.0
+margin_right = 373.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 0 )
+text = "DELETE"
+
+[node name="space2" type="Control" parent="panel/vbc/vbc/hbc"]
+margin_left = 377.0
+margin_right = 452.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 75, 0 )
+
+[node name="buOk" type="Button" parent="panel/vbc/vbc/hbc"]
+margin_left = 456.0
+margin_right = 606.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 0 )
+text = "LOAD"
+[connection signal="pressed" from="panel/vbc/vbc/hbc/buCancel" to="." method="onClickCancel"]
+[connection signal="pressed" from="panel/vbc/vbc/hbc/buDelete" to="." method="onClickDelete"]
+[connection signal="pressed" from="panel/vbc/vbc/hbc/buOk" to="." method="onClickOk"]

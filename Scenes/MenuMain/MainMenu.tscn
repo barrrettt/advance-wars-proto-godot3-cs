@@ -1,0 +1,142 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/MenuMain/MainMenu.cs" type="Script" id=1]
+[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Units/AlienA/UnitAlien.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+outline_size = 10
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+font_data = ExtResource( 2 )
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="panel" type="Panel" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 298.893, 286.625 )
+
+[node name="vbc" type="VBoxContainer" parent="panel"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="title" type="Label" parent="panel/vbc"]
+self_modulate = Color( 0.882353, 1, 0, 1 )
+margin_right = 1920.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Game Tiltle"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="panel/vbc"]
+margin_top = 244.0
+margin_right = 1920.0
+margin_bottom = 1024.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="vbc" type="Panel" parent="panel/vbc/HBoxContainer"]
+margin_right = 958.0
+margin_bottom = 780.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="vbcButtons" type="VBoxContainer" parent="panel/vbc/HBoxContainer/vbc"]
+margin_left = 200.0
+margin_top = 100.0
+margin_right = 800.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="buNew" type="Button" parent="panel/vbc/HBoxContainer/vbc/vbcButtons"]
+margin_right = 600.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "New"
+align = 0
+
+[node name="spce" type="Control" parent="panel/vbc/HBoxContainer/vbc/vbcButtons"]
+margin_top = 104.0
+margin_right = 600.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="buEditor" type="Button" parent="panel/vbc/HBoxContainer/vbc/vbcButtons"]
+margin_top = 158.0
+margin_right = 600.0
+margin_bottom = 258.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Editor"
+align = 0
+
+[node name="spce2" type="Control" parent="panel/vbc/HBoxContainer/vbc/vbcButtons"]
+margin_top = 262.0
+margin_right = 600.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="buExit" type="Button" parent="panel/vbc/HBoxContainer/vbc/vbcButtons"]
+margin_top = 316.0
+margin_right = 600.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Exit"
+align = 0
+
+[node name="vbcLast" type="VBoxContainer" parent="panel/vbc/HBoxContainer"]
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 780.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UnitAlien" parent="panel/vbc/HBoxContainer/vbcLast" instance=ExtResource( 3 )]
+editor/display_folded = true
+show_behind_parent = true
+position = Vector2( 475.737, 488.461 )
+scale = Vector2( 19.41, 19.44 )
+z_index = -2
+z_as_relative = false
+
+[node name="TmZone" parent="panel/vbc/HBoxContainer/vbcLast/UnitAlien" index="0"]
+visible = false
+
+[node name="spColorPlayer" parent="panel/vbc/HBoxContainer/vbcLast/UnitAlien" index="1"]
+visible = false
+
+[node name="base" parent="panel/vbc/HBoxContainer/vbcLast/UnitAlien" index="2"]
+editor/display_folded = false
+
+[node name="body" parent="panel/vbc/HBoxContainer/vbcLast/UnitAlien/base" index="0"]
+editor/display_folded = true
+
+[node name="pieR" parent="panel/vbc/HBoxContainer/vbcLast/UnitAlien/base" index="2"]
+z_index = 1
+
+[node name="manoR" parent="panel/vbc/HBoxContainer/vbcLast/UnitAlien/base" index="4"]
+z_index = 1
+[connection signal="pressed" from="panel/vbc/HBoxContainer/vbc/vbcButtons/buNew" to="." method="onCLickBuNew"]
+[connection signal="pressed" from="panel/vbc/HBoxContainer/vbc/vbcButtons/buEditor" to="." method="onCLickBuEditor"]
+[connection signal="pressed" from="panel/vbc/HBoxContainer/vbc/vbcButtons/buExit" to="." method="onClickBuExit"]
+
+[editable path="panel/vbc/HBoxContainer/vbcLast/UnitAlien"]

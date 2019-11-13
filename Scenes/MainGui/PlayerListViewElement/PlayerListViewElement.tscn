@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/MainGui/PlayerListViewElement/PlayerListViewElement.cs" type="Script" id=1]
+
+[node name="PlayerListViewElement" type="ColorRect"]
+self_modulate = Color( 1, 1, 1, 0.784314 )
+margin_right = 150.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 150, 40 )
+color = Color( 0.0823529, 0.0784314, 0.0784314, 0.588235 )
+script = ExtResource( 1 )
+
+[node name="crIsActual" type="ColorRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 13.0
+margin_top = -63.0
+margin_right = -3.0
+margin_bottom = -3.0
+rect_min_size = Vector2( 0, 10 )
+color = Color( 1, 0.00392157, 0.00392157, 0.588235 )
+
+[node name="hbc" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="crT" type="ColorRect" parent="hbc"]
+margin_right = 10.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 10, 0 )
+color = Color( 0.00392157, 0.439216, 0.996078, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="hbc"]
+margin_left = 14.0
+margin_right = 150.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+
+[node name="lblPlayerName" type="Label" parent="hbc/vbc"]
+self_modulate = Color( 0.0235294, 0.701961, 1, 1 )
+margin_right = 136.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "Player name"
+valign = 1
+
+[node name="lblPlayerType" type="Label" parent="hbc/vbc"]
+self_modulate = Color( 0.0235294, 0.701961, 1, 1 )
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 20 )
+text = "LOCAL"
+valign = 1
+
+[node name="lblDetailPlayer" type="Label" parent="hbc/vbc"]
+margin_top = 48.0
+margin_right = 136.0
+margin_bottom = 62.0
+text = "Res:0 (+0) Units: 100"

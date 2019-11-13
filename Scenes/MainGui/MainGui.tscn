@@ -1,0 +1,2116 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Scenes/MainGui/MainGui.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Units/Soldier/UnitSoldier.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Units/SoldierB/UnitSoldierB.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Units/AlienA/UnitAlien.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scenes/MainGui/sprites/Icon.7_53.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/WorldMap/sprites/TerrainTiles.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MainGui/sprites/Icon.2_06.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/MainGui/sprites/Icon.1_65.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/MainGui/sprites/Icon.1_39.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/MainGui/sprites/save.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/MainGui/sprites/load.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Units/Soldier/Sprites/SoldierSprites.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/Units/SoldierB/Sprites/SoldierBSprites.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Units/AlienA/AlienSprite.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/MainGui/SubPanelLoadTerrainData/SubPanelLoadTerrainData.tscn" type="PackedScene" id=16]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=3]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.176471, 0.176471, 0.176471, 0 ), Color( 0.176471, 0.176471, 0.176471, 0.666667 ), Color( 0.176471, 0.176471, 0.176471, 0.666667 ), Color( 0.180392, 0.180392, 0.180392, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("lblTurnNum:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2 ),
+"transitions": PoolRealArray( 0.138696, 1, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -1000, 368.075 ), Vector2( 0, 368.075 ), Vector2( 0, 368.075 ), Vector2( -1000, 368.075 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("lblTurnPlayerName:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 1.6, 2 ),
+"transitions": PoolRealArray( 0.189464, 1, 0.499999, 1 ),
+"update": 0,
+"values": [ Vector2( 2000, 701 ), Vector2( 1037, 701 ), Vector2( 1037, 701 ), Vector2( 2000, 701 ) ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 5 )
+
+[node name="MainGui" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="MainGroup" type="Node" parent="."]
+
+[node name="pPlayers" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -300.0
+rect_min_size = Vector2( 0, 80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="color" type="ColorRect" parent="MainGroup/pPlayers"]
+anchor_right = 1.0
+rect_min_size = Vector2( 10, 5 )
+color = Color( 0.00392157, 0.439216, 0.996078, 1 )
+
+[node name="playerListView" type="HBoxContainer" parent="MainGroup/pPlayers"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 10.0
+margin_right = -5.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 0, 19.52 )
+
+[node name="pTurn" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+self_modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -275.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 91.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pTurn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 5.0
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pTurn/hbc"]
+margin_right = 10.0
+margin_bottom = 91.0
+rect_min_size = Vector2( 10, 0 )
+color = Color( 1, 0, 0.117647, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pTurn/hbc"]
+margin_left = 14.0
+margin_right = 270.0
+margin_bottom = 91.0
+size_flags_horizontal = 3
+
+[node name="lblTurnNum" type="Label" parent="MainGroup/pTurn/hbc/vbc"]
+self_modulate = Color( 1, 0.0235294, 0.0235294, 1 )
+margin_right = 256.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "Turn: 0"
+valign = 1
+
+[node name="lblActualPlayer" type="Label" parent="MainGroup/pTurn/hbc/vbc"]
+margin_top = 24.0
+margin_right = 256.0
+margin_bottom = 38.0
+text = "Actual Player: 0"
+
+[node name="lblTime" type="Label" parent="MainGroup/pTurn/hbc/vbc"]
+self_modulate = Color( 0.0235294, 0.701961, 1, 1 )
+margin_top = 42.0
+margin_right = 256.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 0, 20 )
+text = "Time"
+valign = 1
+
+[node name="pbTurnTime" type="ProgressBar" parent="MainGroup/pTurn/hbc/vbc"]
+self_modulate = Color( 1, 0.345098, 0.345098, 1 )
+margin_top = 66.0
+margin_right = 256.0
+margin_bottom = 80.0
+max_value = 20.0
+step = 0.001
+value = 15.0
+allow_greater = true
+allow_lesser = true
+
+[node name="pUnitsControl" type="Panel" parent="MainGroup"]
+self_modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1700.0
+margin_top = -95.0
+margin_right = -5.0
+margin_bottom = -5.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pUnitsControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pUnitsControl/vbc"]
+margin_right = 1695.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+color = Color( 0.00392157, 0.439216, 0.996078, 1 )
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pUnitsControl/vbc"]
+margin_top = 14.0
+margin_right = 1695.0
+margin_bottom = 85.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="space" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc"]
+margin_right = 20.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 20, 60 )
+
+[node name="buBack" type="Button" parent="MainGroup/pUnitsControl/vbc/hbc"]
+margin_left = 24.0
+margin_right = 84.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 60, 60 )
+rect_pivot_offset = Vector2( 39.2035, 35.7725 )
+text = "<"
+
+[node name="space2" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc"]
+margin_left = 88.0
+margin_right = 148.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 60, 60 )
+
+[node name="scrollUnits" type="ScrollContainer" parent="MainGroup/pUnitsControl/vbc/hbc"]
+editor/display_folded = true
+margin_left = 152.0
+margin_right = 1422.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_vertical_enabled = false
+scroll_deadzone = 10
+
+[node name="unitList" type="HBoxContainer" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits"]
+margin_right = 875.0
+margin_bottom = 60.0
+
+[node name="UnitView" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList"]
+editor/display_folded = true
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+
+[node name="units" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView"]
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="UnitSoldier" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView/units" instance=ExtResource( 2 )]
+position = Vector2( 20, 25 )
+
+[node name="UnitSoldierB" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView/units" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 20, 25 )
+
+[node name="UnitAlien" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView/units" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 20, 25 )
+
+[node name="pbHp" type="ProgressBar" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView"]
+self_modulate = Color( 0.992157, 0.0235294, 0.0235294, 1 )
+margin_right = 60.0
+margin_bottom = 15.0
+max_value = 1.0
+value = 0.5
+
+[node name="pbMoves" type="ProgressBar" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView"]
+self_modulate = Color( 0.552941, 0.972549, 0, 1 )
+margin_top = 45.0
+margin_right = 60.0
+margin_bottom = 60.0
+max_value = 1.0
+value = 0.5
+
+[node name="UnitView2" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList"]
+editor/display_folded = true
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+
+[node name="units" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView2"]
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="UnitSoldier" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView2/units" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 20, 25 )
+
+[node name="UnitSoldierB" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView2/units" instance=ExtResource( 3 )]
+position = Vector2( 20, 25 )
+
+[node name="UnitAlien" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView2/units" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 20, 25 )
+
+[node name="pbHp" type="ProgressBar" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView2"]
+self_modulate = Color( 0.992157, 0.0235294, 0.0235294, 1 )
+margin_right = 60.0
+margin_bottom = 15.0
+max_value = 1.0
+value = 0.91
+
+[node name="pbMoves" type="ProgressBar" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView2"]
+self_modulate = Color( 0.552941, 0.972549, 0, 1 )
+margin_top = 45.0
+margin_right = 60.0
+margin_bottom = 60.0
+max_value = 1.0
+value = 0.91
+
+[node name="UnitView3" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList"]
+editor/display_folded = true
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+
+[node name="units" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView3"]
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="UnitSoldier" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView3/units" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 20, 25 )
+
+[node name="UnitSoldierB" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView3/units" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 20, 25 )
+
+[node name="UnitAlien" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView3/units" instance=ExtResource( 4 )]
+position = Vector2( 20, 25 )
+
+[node name="pbHp" type="ProgressBar" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView3"]
+self_modulate = Color( 0.992157, 0.0235294, 0.0235294, 1 )
+margin_right = 60.0
+margin_bottom = 15.0
+max_value = 1.0
+value = 0.21
+
+[node name="pbMoves" type="ProgressBar" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList/UnitView3"]
+self_modulate = Color( 0.552941, 0.972549, 0, 1 )
+margin_top = 45.0
+margin_right = 60.0
+margin_bottom = 60.0
+max_value = 1.0
+value = 0.92
+
+[node name="Label" type="Label" parent="MainGroup/pUnitsControl/vbc/hbc/scrollUnits/unitList"]
+margin_left = 192.0
+margin_top = 8.0
+margin_right = 875.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 1 )
+text = "concept unit bar, it still doesn't work."
+
+[node name="space3" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc"]
+margin_left = 1426.0
+margin_right = 1486.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 60, 60 )
+
+[node name="buNext" type="Button" parent="MainGroup/pUnitsControl/vbc/hbc"]
+margin_left = 1490.0
+margin_right = 1550.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 60, 60 )
+rect_pivot_offset = Vector2( 39.2035, 35.7725 )
+text = ">"
+
+[node name="space4" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc"]
+margin_left = 1554.0
+margin_right = 1584.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 30, 60 )
+
+[node name="buEndTurn" type="Button" parent="MainGroup/pUnitsControl/vbc/hbc"]
+editor/display_folded = true
+margin_left = 1588.0
+margin_right = 1671.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 60, 60 )
+text = "NEXT TURN"
+
+[node name="Sprite" type="Sprite" parent="MainGroup/pUnitsControl/vbc/hbc/buEndTurn"]
+modulate = Color( 0.00392157, 0.439216, 0.996078, 1 )
+position = Vector2( 41.258, 35.4225 )
+scale = Vector2( 0.186601, 0.16315 )
+texture = ExtResource( 6 )
+
+[node name="space5" type="Control" parent="MainGroup/pUnitsControl/vbc/hbc"]
+margin_left = 1675.0
+margin_right = 1695.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 20, 60 )
+
+[node name="pDataTerrain" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+self_modulate = Color( 1, 1, 1, 0.784314 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -95.0
+margin_right = 165.0
+margin_bottom = -5.0
+rect_pivot_offset = Vector2( 0, 80 )
+rect_clip_content = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pDataTerrain"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -2.0
+margin_bottom = -2.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pDataTerrain/hbc"]
+margin_right = 10.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 10, 10 )
+color = Color( 0.0117647, 0.223529, 0, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pDataTerrain/hbc"]
+margin_left = 14.0
+margin_right = 153.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pDataTerrain/hbc/vbc"]
+editor/display_folded = true
+margin_right = 139.0
+margin_bottom = 30.0
+
+[node name="imsTerrain" type="Control" parent="MainGroup/pDataTerrain/hbc/vbc/hbc"]
+editor/display_folded = true
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+
+[node name="0" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 0, 40, 40 )
+
+[node name="1" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 40, 40, 40 )
+
+[node name="2" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 80, 40, 40 )
+
+[node name="3" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 120, 40, 40 )
+
+[node name="4" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 160, 40, 40 )
+
+[node name="5" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 200, 40, 40 )
+
+[node name="6" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 240, 40, 40 )
+
+[node name="7" type="Sprite" parent="MainGroup/pDataTerrain/hbc/vbc/hbc/imsTerrain"]
+position = Vector2( 15.04, 18.56 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 280, 40, 40 )
+
+[node name="lblTerrain" type="Label" parent="MainGroup/pDataTerrain/hbc/vbc/hbc"]
+self_modulate = Color( 0.341176, 0.890196, 0, 1 )
+margin_left = 34.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 20 )
+text = "Pos: (0,0)"
+valign = 1
+
+[node name="lblTerrainDetail" type="Label" parent="MainGroup/pDataTerrain/hbc/vbc"]
+margin_top = 34.0
+margin_right = 139.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Info here
+1 line
+2 line"
+
+[node name="pDataUnit" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+margin_left = 5.0
+margin_top = 110.0
+margin_right = 229.0
+margin_bottom = 348.0
+rect_pivot_offset = Vector2( 0, 80 )
+rect_clip_content = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pDataUnit"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pDataUnit/hbc"]
+margin_right = 10.0
+margin_bottom = 238.0
+rect_min_size = Vector2( 10, 0 )
+color = Color( 0.00392157, 0.439216, 0.996078, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pDataUnit/hbc"]
+margin_left = 14.0
+margin_right = 139.0
+margin_bottom = 238.0
+rect_min_size = Vector2( 125, 100 )
+
+[node name="lblUnit" type="Label" parent="MainGroup/pDataUnit/hbc/vbc"]
+self_modulate = Color( 0.00392157, 0.694118, 0.996078, 1 )
+margin_right = 125.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "None"
+valign = 1
+
+[node name="lblUnitDetail" type="Label" parent="MainGroup/pDataUnit/hbc/vbc"]
+margin_top = 24.0
+margin_right = 125.0
+margin_bottom = 38.0
+text = "Position: (20,56)"
+
+[node name="Control" type="Control" parent="MainGroup/pDataUnit"]
+editor/display_folded = true
+margin_left = 36.6451
+margin_top = 42.5735
+margin_right = 198.645
+margin_bottom = 222.573
+rect_min_size = Vector2( 162, 180 )
+
+[node name="UnitSoldier" parent="MainGroup/pDataUnit/Control" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 76.1974, 136.544 )
+scale = Vector2( 5, 5 )
+
+[node name="UnitSoldierB" parent="MainGroup/pDataUnit/Control" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 75.5672, 129.8 )
+scale = Vector2( 5, 5 )
+
+[node name="UnitAlien" parent="MainGroup/pDataUnit/Control" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 73.4797, 134.19 )
+scale = Vector2( 5, 5 )
+
+[node name="pTabs" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -274.631
+margin_top = 5.98824
+margin_right = -5.63086
+margin_bottom = 42.9882
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pTabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -3.0
+margin_bottom = -2.0
+
+[node name="b0" type="Button" parent="MainGroup/pTabs/hbc"]
+editor/display_folded = true
+margin_right = 35.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 35, 30 )
+
+[node name="sp0" type="Sprite" parent="MainGroup/pTabs/hbc/b0"]
+self_modulate = Color( 0.443137, 0.8, 0.145098, 1 )
+position = Vector2( 17.2229, 15.1792 )
+scale = Vector2( 0.066283, 0.0624542 )
+texture = ExtResource( 8 )
+region_rect = Rect2( -2.5, 0, 65, 65 )
+
+[node name="b1" type="Button" parent="MainGroup/pTabs/hbc"]
+editor/display_folded = true
+margin_left = 39.0
+margin_right = 74.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 35, 30 )
+
+[node name="sp0" type="Sprite" parent="MainGroup/pTabs/hbc/b1"]
+self_modulate = Color( 0.862745, 0.913725, 0.243137, 1 )
+position = Vector2( 17.4553, 15.0498 )
+scale = Vector2( 0.0656664, 0.0617045 )
+texture = ExtResource( 9 )
+region_rect = Rect2( -2.5, 0, 65, 65 )
+
+[node name="b2" type="Button" parent="MainGroup/pTabs/hbc"]
+editor/display_folded = true
+margin_left = 78.0
+margin_right = 113.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 35, 30 )
+
+[node name="sp0" type="Sprite" parent="MainGroup/pTabs/hbc/b2"]
+self_modulate = Color( 0.427451, 0.458824, 0.917647, 1 )
+position = Vector2( 17.4093, 15.4032 )
+scale = Vector2( 0.073367, 0.0631251 )
+texture = ExtResource( 10 )
+region_rect = Rect2( -2.5, 0, 65, 65 )
+
+[node name="Control" type="Control" parent="MainGroup/pTabs/hbc"]
+margin_left = 117.0
+margin_right = 157.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 40, 0 )
+
+[node name="b3" type="Button" parent="MainGroup/pTabs/hbc"]
+editor/display_folded = true
+margin_left = 161.0
+margin_right = 196.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 35, 30 )
+
+[node name="sp0" type="Sprite" parent="MainGroup/pTabs/hbc/b3"]
+self_modulate = Color( 0.823529, 0.0862745, 0.172549, 1 )
+position = Vector2( 18.3289, 15.4293 )
+scale = Vector2( 0.0554024, 0.0539046 )
+texture = ExtResource( 11 )
+region_rect = Rect2( -2.5, 0, 65, 65 )
+
+[node name="b4" type="Button" parent="MainGroup/pTabs/hbc"]
+editor/display_folded = true
+margin_left = 200.0
+margin_right = 235.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 35, 30 )
+
+[node name="sp0" type="Sprite" parent="MainGroup/pTabs/hbc/b4"]
+self_modulate = Color( 0.317647, 0.32549, 0.815686, 1 )
+position = Vector2( 17.5019, 15.6383 )
+scale = Vector2( 0.0601739, 0.0555622 )
+texture = ExtResource( 12 )
+region_rect = Rect2( -2.5, 0, 65, 65 )
+
+[node name="pGenEdit" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -274.631
+margin_top = 50.9882
+margin_right = -4.63086
+margin_bottom = 530.988
+rect_pivot_offset = Vector2( 120, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pGenEdit"]
+margin_right = 270.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+color = Color( 1, 0.0117647, 0.105882, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pGenEdit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 10.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+
+[node name="vbc2" type="VBoxContainer" parent="MainGroup/pGenEdit/vbc"]
+editor/display_folded = true
+margin_right = 260.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="lblGenera" type="Label" parent="MainGroup/pGenEdit/vbc/vbc2"]
+self_modulate = Color( 1, 0, 0.117647, 1 )
+margin_right = 260.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "GENERATION"
+align = 1
+valign = 1
+
+[node name="lineG1" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc2"]
+editor/display_folded = true
+margin_top = 24.0
+margin_right = 260.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc2/lineG1"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Seed"
+
+[node name="txtSeed" type="TextEdit" parent="MainGroup/pGenEdit/vbc/vbc2/lineG1"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "0"
+
+[node name="lineG2" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc2"]
+editor/display_folded = true
+margin_top = 48.0
+margin_right = 260.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc2/lineG2"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "SizeMap"
+
+[node name="txtSizeMap" type="TextEdit" parent="MainGroup/pGenEdit/vbc/vbc2/lineG2"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "100"
+
+[node name="vbc3" type="VBoxContainer" parent="MainGroup/pGenEdit/vbc"]
+editor/display_folded = true
+margin_top = 84.0
+margin_right = 260.0
+margin_bottom = 209.0
+rect_min_size = Vector2( 0, 125 )
+
+[node name="lblNoise" type="Label" parent="MainGroup/pGenEdit/vbc/vbc3"]
+self_modulate = Color( 0.866667, 0.913725, 0.0392157, 1 )
+margin_right = 260.0
+margin_bottom = 14.0
+text = "Noise Terrains"
+align = 1
+
+[node name="lineN1" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc3"]
+editor/display_folded = true
+margin_top = 18.0
+margin_right = 260.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc3/lineN1"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Octaves "
+
+[node name="txtOctaves" type="TextEdit" parent="MainGroup/pGenEdit/vbc/vbc3/lineN1"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "8"
+
+[node name="lineN2" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc3"]
+editor/display_folded = true
+margin_top = 42.0
+margin_right = 260.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc3/lineN2"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Period        "
+
+[node name="txtPeriod" type="TextEdit" parent="MainGroup/pGenEdit/vbc/vbc3/lineN2"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "6"
+
+[node name="lineN3" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc3"]
+editor/display_folded = true
+margin_top = 66.0
+margin_right = 260.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc3/lineN3"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Lacunarity  "
+
+[node name="txtLacunarity" type="TextEdit" parent="MainGroup/pGenEdit/vbc/vbc3/lineN3"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "1,5"
+
+[node name="lineN4" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc3"]
+editor/display_folded = true
+margin_top = 90.0
+margin_right = 260.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc3/lineN4"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Persistence"
+
+[node name="txtPersistence" type="TextEdit" parent="MainGroup/pGenEdit/vbc/vbc3/lineN4"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "0,02"
+
+[node name="vbc4" type="VBoxContainer" parent="MainGroup/pGenEdit/vbc"]
+editor/display_folded = true
+margin_top = 213.0
+margin_right = 260.0
+margin_bottom = 413.0
+rect_min_size = Vector2( 0, 200 )
+
+[node name="lblTAmount" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4"]
+self_modulate = Color( 0.866667, 0.913725, 0.0392157, 1 )
+margin_right = 260.0
+margin_bottom = 14.0
+text = "Min heights"
+align = 1
+
+[node name="lineA1" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc4"]
+margin_top = 18.0
+margin_right = 260.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4/lineA1"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Water"
+
+[node name="slA1" type="HSlider" parent="MainGroup/pGenEdit/vbc/vbc4/lineA1"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 5.0
+ticks_on_borders = true
+
+[node name="lineA2" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc4"]
+margin_top = 42.0
+margin_right = 260.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4/lineA2"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Ground"
+
+[node name="slA2" type="HSlider" parent="MainGroup/pGenEdit/vbc/vbc4/lineA2"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 10.0
+ticks_on_borders = true
+
+[node name="lineA3" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc4"]
+margin_top = 66.0
+margin_right = 260.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4/lineA3"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Grass"
+
+[node name="slA3" type="HSlider" parent="MainGroup/pGenEdit/vbc/vbc4/lineA3"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 15.0
+ticks_on_borders = true
+
+[node name="lineA4" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc4"]
+margin_top = 90.0
+margin_right = 260.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4/lineA4"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Forest"
+
+[node name="slA4" type="HSlider" parent="MainGroup/pGenEdit/vbc/vbc4/lineA4"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 20.0
+ticks_on_borders = true
+
+[node name="lineA5" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc4"]
+margin_top = 114.0
+margin_right = 260.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4/lineA5"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Hills"
+
+[node name="slA5" type="HSlider" parent="MainGroup/pGenEdit/vbc/vbc4/lineA5"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 25.0
+ticks_on_borders = true
+
+[node name="lineA6" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc4"]
+margin_top = 138.0
+margin_right = 260.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4/lineA6"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Mountain"
+
+[node name="slA6" type="HSlider" parent="MainGroup/pGenEdit/vbc/vbc4/lineA6"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 30.0
+ticks_on_borders = true
+
+[node name="lineA7" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc/vbc4"]
+margin_top = 162.0
+margin_right = 260.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/vbc4/lineA7"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Tops"
+
+[node name="slA7" type="HSlider" parent="MainGroup/pGenEdit/vbc/vbc4/lineA7"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 35.0
+ticks_on_borders = true
+
+[node name="lineR" type="HBoxContainer" parent="MainGroup/pGenEdit/vbc"]
+margin_top = 417.0
+margin_right = 260.0
+margin_bottom = 437.0
+rect_min_size = Vector2( 20, 20 )
+
+[node name="Label" type="Label" parent="MainGroup/pGenEdit/vbc/lineR"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 80, 0 )
+text = "Rivers"
+
+[node name="slR" type="HSlider" parent="MainGroup/pGenEdit/vbc/lineR"]
+margin_left = 84.0
+margin_right = 260.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 1.0
+ticks_on_borders = true
+
+[node name="buGen" type="Button" parent="MainGroup/pGenEdit/vbc"]
+margin_top = 441.0
+margin_right = 260.0
+margin_bottom = 466.0
+rect_min_size = Vector2( 0, 25 )
+text = "GO!"
+
+[node name="pIndiEdit" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -274.631
+margin_top = 50.9882
+margin_right = -4.63086
+margin_bottom = 160.988
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pIndiEdit"]
+margin_right = 270.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 3
+color = Color( 1, 0.0117647, 0.105882, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pIndiEdit"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 10.0
+rect_min_size = Vector2( 0, 70 )
+
+[node name="lblEdition" type="Label" parent="MainGroup/pIndiEdit/vbc"]
+self_modulate = Color( 1, 0, 0.117647, 1 )
+margin_right = 270.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "INDIVIDUAL EDITION"
+align = 1
+valign = 1
+
+[node name="lblActualSelected" type="Label" parent="MainGroup/pIndiEdit/vbc"]
+margin_top = 24.0
+margin_right = 270.0
+margin_bottom = 38.0
+text = "Actual selection: NONE"
+align = 1
+
+[node name="Control" type="CenterContainer" parent="MainGroup/pIndiEdit/vbc"]
+editor/display_folded = true
+margin_top = 42.0
+margin_right = 270.0
+margin_bottom = 86.0
+
+[node name="GridContainer" type="GridContainer" parent="MainGroup/pIndiEdit/vbc/Control"]
+margin_left = 52.0
+margin_top = 12.0
+margin_right = 217.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 165, 20 )
+columns = 9
+
+[node name="b0" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="b1" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b1"]
+position = Vector2( 10, 10 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 0, 40, 40 )
+
+[node name="b2" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b2"]
+position = Vector2( 10.1403, 10 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 40, 40, 40 )
+
+[node name="b3" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 72.0
+margin_right = 92.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite3" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b3"]
+position = Vector2( 10.1227, 10 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 80, 40, 40 )
+
+[node name="b4" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 96.0
+margin_right = 116.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite4" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b4"]
+position = Vector2( 9.97095, 10.1577 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 120, 40, 40 )
+
+[node name="b5" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 120.0
+margin_right = 140.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite5" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b5"]
+position = Vector2( 9.63782, 9.68433 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 160, 40, 40 )
+
+[node name="b6" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 144.0
+margin_right = 164.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite6" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b6"]
+position = Vector2( 9.77808, 10.1342 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 200, 40, 40 )
+
+[node name="b7" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 168.0
+margin_right = 188.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite7" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b7"]
+position = Vector2( 10.0893, 10.4354 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 240, 40, 40 )
+
+[node name="b8" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 192.0
+margin_right = 212.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite8" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b8"]
+position = Vector2( 10.0761, 9.97632 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 40, 280, 40, 40 )
+
+[node name="b9" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_top = 24.0
+margin_right = 20.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite8" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b9"]
+position = Vector2( 10.0761, 9.97632 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 486.48, -3.21, 40, 40 )
+
+[node name="b10" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 44.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite8" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b10"]
+position = Vector2( 10.0761, 9.97632 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 0, 400, 40, 40 )
+
+[node name="b11" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 48.0
+margin_top = 24.0
+margin_right = 68.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite8" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b11"]
+position = Vector2( 10.0761, 9.97632 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 192.11, 432.7, 40, 40 )
+
+[node name="b12" type="Button" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 72.0
+margin_top = 24.0
+margin_right = 92.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite8" type="Sprite" parent="MainGroup/pIndiEdit/vbc/Control/GridContainer/b12"]
+self_modulate = Color( 0.486275, 0.486275, 0.486275, 1 )
+position = Vector2( 10.0761, 9.97632 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 360, 120, 40, 40 )
+
+[node name="pUnitEdit" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -274.631
+margin_top = 50.9882
+margin_right = -4.63086
+margin_bottom = 160.988
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pUnitEdit"]
+margin_right = 270.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 3
+color = Color( 1, 0.0117647, 0.105882, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pUnitEdit"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 10.0
+rect_min_size = Vector2( 0, 70 )
+
+[node name="lblUnits" type="Label" parent="MainGroup/pUnitEdit/vbc"]
+self_modulate = Color( 1, 0, 0.117647, 1 )
+margin_right = 270.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "ADD UNITS"
+align = 1
+valign = 1
+
+[node name="lblActualSelectedUnit" type="Label" parent="MainGroup/pUnitEdit/vbc"]
+margin_top = 24.0
+margin_right = 270.0
+margin_bottom = 38.0
+text = "Actual selection: NONE"
+align = 1
+
+[node name="Control" type="CenterContainer" parent="MainGroup/pUnitEdit/vbc"]
+editor/display_folded = true
+margin_top = 42.0
+margin_right = 270.0
+margin_bottom = 62.0
+
+[node name="GridContainer" type="GridContainer" parent="MainGroup/pUnitEdit/vbc/Control"]
+editor/display_folded = true
+margin_left = 52.0
+margin_right = 217.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 165, 20 )
+columns = 9
+
+[node name="b0" type="Button" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="b1" type="Button" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer"]
+self_modulate = Color( 1, 0, 0, 1 )
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="b2" type="Button" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer/b2"]
+position = Vector2( 10, 10 )
+scale = Vector2( 0.0696281, 0.0681522 )
+texture = ExtResource( 13 )
+region_enabled = true
+region_rect = Rect2( 3.88605, 0, 232.624, 253.084 )
+
+[node name="b3" type="Button" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 72.0
+margin_right = 92.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer/b3"]
+position = Vector2( 10, 10 )
+scale = Vector2( 0.0644207, 0.0631121 )
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( -1.55545, -5.38691, 232.624, 248.948 )
+
+[node name="b4" type="Button" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer"]
+editor/display_folded = true
+margin_left = 96.0
+margin_right = 116.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="MainGroup/pUnitEdit/vbc/Control/GridContainer/b4"]
+position = Vector2( 10, 10 )
+scale = Vector2( 0.0506637, 0.0554674 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( -9.71768, -5.38691, 323.769, 253.03 )
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pUnitEdit/vbc"]
+margin_top = 66.0
+margin_right = 270.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 0, 4.49 )
+
+[node name="lblPlayerId" type="Label" parent="MainGroup/pUnitEdit/vbc/hbc"]
+margin_top = 1.0
+margin_right = 75.0
+margin_bottom = 15.0
+text = "Player id: 0 "
+
+[node name="slPlayerId" type="HSlider" parent="MainGroup/pUnitEdit/vbc/hbc"]
+margin_left = 79.0
+margin_right = 270.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 7.0
+ticks_on_borders = true
+
+[node name="pSaveData" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 80 )
+rect_clip_content = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="panel" type="Panel" parent="MainGroup/pSaveData"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -310.0
+margin_top = -67.5
+margin_right = 310.0
+margin_bottom = 67.5
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pSaveData/panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 3.0
+margin_right = -7.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MainGroup/pSaveData/panel/vbc"]
+margin_right = 608.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+color = Color( 0.0117647, 0.223529, 0, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pSaveData/panel/vbc"]
+margin_top = 14.0
+margin_right = 608.0
+margin_bottom = 132.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="lblTitle" type="Label" parent="MainGroup/pSaveData/panel/vbc/vbc"]
+self_modulate = Color( 0.341176, 0.890196, 0, 1 )
+margin_right = 608.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "SAVE TERRAIN"
+align = 1
+valign = 1
+
+[node name="lblDetails" type="Label" parent="MainGroup/pSaveData/panel/vbc/vbc"]
+margin_top = 24.0
+margin_right = 608.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Save name"
+
+[node name="txtNameData" type="LineEdit" parent="MainGroup/pSaveData/panel/vbc/vbc"]
+margin_top = 42.0
+margin_right = 608.0
+margin_bottom = 66.0
+focus_mode = 1
+max_length = 50
+focus_mode = 1
+
+[node name="hbc" type="HBoxContainer" parent="MainGroup/pSaveData/panel/vbc/vbc"]
+margin_top = 70.0
+margin_right = 608.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 30 )
+alignment = 1
+
+[node name="buCancel" type="Button" parent="MainGroup/pSaveData/panel/vbc/vbc/hbc"]
+margin_right = 250.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_vertical = 9
+text = "CANCEL"
+
+[node name="Control" type="Control" parent="MainGroup/pSaveData/panel/vbc/vbc/hbc"]
+margin_left = 254.0
+margin_right = 354.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 3
+
+[node name="buOk" type="Button" parent="MainGroup/pSaveData/panel/vbc/vbc/hbc"]
+margin_left = 358.0
+margin_right = 608.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 250, 0 )
+text = "SAVE"
+
+[node name="pChangeTurn" type="ColorRect" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.180392, 0.180392, 0.180392, 0 )
+
+[node name="lblTurnNum" type="Label" parent="MainGroup/pChangeTurn"]
+margin_left = -1000.0
+margin_top = 368.075
+margin_right = -331.0
+margin_bottom = 505.075
+custom_fonts/font = SubResource( 2 )
+text = "Turn 10"
+align = 1
+valign = 1
+
+[node name="lblTurnPlayerName" type="Label" parent="MainGroup/pChangeTurn"]
+margin_left = 2000.0
+margin_top = 701.0
+margin_right = 2804.17
+margin_bottom = 838.0
+custom_fonts/font = SubResource( 2 )
+text = "Player Name"
+align = 1
+valign = 1
+
+[node name="animTurn" type="AnimationPlayer" parent="MainGroup/pChangeTurn"]
+anims/show = SubResource( 3 )
+
+[node name="pEnterGame" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -296.0
+margin_top = -173.0
+margin_right = 297.0
+margin_bottom = 253.0
+
+[node name="lblCreate" type="Label" parent="MainGroup/pEnterGame"]
+margin_left = 35.0
+margin_top = 28.0
+margin_right = 566.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Create game"
+
+[node name="buSelectMap" type="Button" parent="MainGroup/pEnterGame"]
+margin_left = 29.1354
+margin_top = 87.088
+margin_right = 271.135
+margin_bottom = 146.088
+text = "SELECT MAP"
+
+[node name="buCreate" type="Button" parent="MainGroup/pEnterGame"]
+margin_left = 427.0
+margin_top = 85.0
+margin_right = 564.0
+margin_bottom = 144.0
+text = "CREATE"
+
+[node name="lblJoin" type="Label" parent="MainGroup/pEnterGame"]
+margin_left = 34.0508
+margin_top = 200.317
+margin_right = 233.051
+margin_bottom = 237.317
+custom_fonts/font = SubResource( 4 )
+text = "Join game"
+
+[node name="leIP" type="LineEdit" parent="MainGroup/pEnterGame"]
+margin_left = 31.0
+margin_top = 255.0
+margin_right = 318.0
+margin_bottom = 316.0
+placeholder_text = "IP"
+
+[node name="buConnect" type="Button" parent="MainGroup/pEnterGame"]
+margin_left = 428.0
+margin_top = 258.0
+margin_right = 562.0
+margin_bottom = 317.0
+text = "CONNECT"
+
+[node name="buExit" type="Button" parent="MainGroup/pEnterGame"]
+margin_left = 33.7735
+margin_top = 349.359
+margin_right = 167.773
+margin_bottom = 408.359
+text = "CANCEL"
+
+[node name="pLobby" type="Panel" parent="MainGroup"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -442.582
+margin_top = -302.0
+margin_right = 443.418
+margin_bottom = 302.0
+
+[node name="lblTitle" type="Label" parent="MainGroup/pLobby"]
+margin_left = 52.0
+margin_top = 28.0
+margin_right = 848.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Create game"
+
+[node name="crP" type="ColorRect" parent="MainGroup/pLobby"]
+editor/display_folded = true
+margin_left = 49.0
+margin_top = 71.0
+margin_right = 356.0
+margin_bottom = 486.0
+color = Color( 0.294118, 0.286275, 0.286275, 1 )
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pLobby/crP"]
+editor/display_folded = true
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 201.0
+margin_bottom = 405.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="lbl" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 10.0
+margin_right = 192.0
+margin_bottom = 35.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="lbl2" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 60.0
+margin_right = 192.0
+margin_bottom = 85.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="lbl3" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 110.0
+margin_right = 192.0
+margin_bottom = 135.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="lbl4" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 160.0
+margin_right = 192.0
+margin_bottom = 185.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="lbl5" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 210.0
+margin_right = 192.0
+margin_bottom = 235.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="lbl6" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 260.0
+margin_right = 192.0
+margin_bottom = 285.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="lbl7" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 310.0
+margin_right = 192.0
+margin_bottom = 335.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="lbl8" type="Label" parent="MainGroup/pLobby/crP/vbc"]
+margin_top = 360.0
+margin_right = 192.0
+margin_bottom = 385.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Player n Local"
+
+[node name="vbc2" type="VBoxContainer" parent="MainGroup/pLobby/crP"]
+editor/display_folded = true
+margin_left = 218.0
+margin_top = 7.0
+margin_right = 286.0
+margin_bottom = 405.0
+
+[node name="bp0" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 3.0
+margin_right = 70.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="bp1" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 53.0
+margin_right = 70.0
+margin_bottom = 93.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="bp2" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 103.0
+margin_right = 70.0
+margin_bottom = 143.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="bp3" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 153.0
+margin_right = 70.0
+margin_bottom = 193.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="bp4" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 203.0
+margin_right = 70.0
+margin_bottom = 243.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="bp5" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 253.0
+margin_right = 70.0
+margin_bottom = 293.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="bp6" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 303.0
+margin_right = 70.0
+margin_bottom = 343.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="bp7" type="Button" parent="MainGroup/pLobby/crP/vbc2"]
+margin_top = 354.0
+margin_right = 70.0
+margin_bottom = 394.0
+rect_min_size = Vector2( 70, 40 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "T"
+
+[node name="crT" type="ColorRect" parent="MainGroup/pLobby"]
+editor/display_folded = true
+margin_left = 383.0
+margin_top = 73.0
+margin_right = 588.0
+margin_bottom = 488.0
+color = Color( 0.294118, 0.286275, 0.286275, 1 )
+
+[node name="lblSize" type="Label" parent="MainGroup/pLobby/crT"]
+margin_left = 4.0
+margin_top = 6.0
+margin_right = 194.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "SizeMap 100"
+
+[node name="vbc" type="VBoxContainer" parent="MainGroup/pLobby/crT"]
+editor/display_folded = true
+margin_left = 9.0
+margin_top = 64.0
+margin_right = 198.0
+margin_bottom = 405.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="lbl" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 1.0
+margin_right = 189.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Deep Water: 0"
+
+[node name="lbl2" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 32.0
+margin_right = 189.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Water: 0"
+
+[node name="lbl3" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 63.0
+margin_right = 189.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Ground: 0"
+
+[node name="lbl4" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 94.0
+margin_right = 189.0
+margin_bottom = 119.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Glass: 0"
+
+[node name="lbl5" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 125.0
+margin_right = 189.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Forest: 0"
+
+[node name="lbl6" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 156.0
+margin_right = 189.0
+margin_bottom = 181.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Hills: 0"
+
+[node name="lbl7" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 187.0
+margin_right = 189.0
+margin_bottom = 212.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Mountain: 0"
+
+[node name="lbl8" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 218.0
+margin_right = 189.0
+margin_bottom = 243.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Top: 0"
+
+[node name="lbl9" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 249.0
+margin_right = 189.0
+margin_bottom = 274.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "River: 0"
+
+[node name="lbl10" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 280.0
+margin_right = 189.0
+margin_bottom = 305.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Road: 0"
+
+[node name="lbl11" type="Label" parent="MainGroup/pLobby/crT/vbc"]
+margin_top = 313.0
+margin_right = 189.0
+margin_bottom = 338.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 5 )
+text = "Building: 0"
+
+[node name="crChat" type="ColorRect" parent="MainGroup/pLobby"]
+editor/display_folded = true
+margin_left = 630.0
+margin_top = 76.0
+margin_right = 856.0
+margin_bottom = 486.0
+color = Color( 0.294118, 0.286275, 0.286275, 1 )
+
+[node name="Label" type="Label" parent="MainGroup/pLobby/crChat"]
+margin_left = 39.4558
+margin_top = 143.616
+margin_right = 184.456
+margin_bottom = 231.616
+custom_fonts/font = SubResource( 6 )
+text = "CHAT HERE"
+align = 1
+valign = 1
+
+[node name="LineEdit" type="LineEdit" parent="MainGroup/pLobby/crChat"]
+margin_left = 3.9021
+margin_top = 370.964
+margin_right = 164.902
+margin_bottom = 404.964
+
+[node name="Button" type="Button" parent="MainGroup/pLobby/crChat"]
+margin_left = 173.0
+margin_top = 372.0
+margin_right = 221.0
+margin_bottom = 405.0
+text = ">"
+
+[node name="buQuit" type="Button" parent="MainGroup/pLobby"]
+margin_left = 43.4221
+margin_top = 520.703
+margin_right = 180.422
+margin_bottom = 579.703
+text = "Quit"
+
+[node name="buOK" type="Button" parent="MainGroup/pLobby"]
+margin_left = 718.481
+margin_top = 524.289
+margin_right = 855.481
+margin_bottom = 583.289
+text = "READY"
+
+[node name="SubPanelLoadTerrainData" parent="MainGroup" instance=ExtResource( 16 )]
+visible = false
+margin_top = -143.0
+margin_bottom = 143.0
+[connection signal="pressed" from="MainGroup/pUnitsControl/vbc/hbc/buEndTurn" to="." method="onClickNextTurn"]
+[connection signal="pressed" from="MainGroup/pTabs/hbc/b0" to="." method="onClickTab" binds= [ 0 ]]
+[connection signal="pressed" from="MainGroup/pTabs/hbc/b1" to="." method="onClickTab" binds= [ 1 ]]
+[connection signal="pressed" from="MainGroup/pTabs/hbc/b2" to="." method="onClickTab" binds= [ 2 ]]
+[connection signal="pressed" from="MainGroup/pTabs/hbc/b3" to="." method="onClickTab" binds= [ 3 ]]
+[connection signal="pressed" from="MainGroup/pTabs/hbc/b4" to="." method="onClickTab" binds= [ 4 ]]
+[connection signal="button_down" from="MainGroup/pGenEdit/vbc/buGen" to="." method="onClickGenerateTerrain"]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b0" to="." method="onClickTerrainEdition" binds= [ -1 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b1" to="." method="onClickTerrainEdition" binds= [ 0 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b2" to="." method="onClickTerrainEdition" binds= [ 1 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b3" to="." method="onClickTerrainEdition" binds= [ 2 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b4" to="." method="onClickTerrainEdition" binds= [ 3 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b5" to="." method="onClickTerrainEdition" binds= [ 4 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b6" to="." method="onClickTerrainEdition" binds= [ 5 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b7" to="." method="onClickTerrainEdition" binds= [ 6 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b8" to="." method="onClickTerrainEdition" binds= [ 7 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b9" to="." method="onClickTerrainEdition" binds= [ 8 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b10" to="." method="onClickTerrainEdition" binds= [ 9 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b11" to="." method="onClickTerrainEdition" binds= [ 10 ]]
+[connection signal="button_down" from="MainGroup/pIndiEdit/vbc/Control/GridContainer/b12" to="." method="onClickTerrainEdition" binds= [ 11 ]]
+[connection signal="pressed" from="MainGroup/pUnitEdit/vbc/Control/GridContainer/b0" to="." method="onClickAddUnit" binds= [ -1 ]]
+[connection signal="pressed" from="MainGroup/pUnitEdit/vbc/Control/GridContainer/b1" to="." method="onClickAddUnit" binds= [ 100 ]]
+[connection signal="pressed" from="MainGroup/pUnitEdit/vbc/Control/GridContainer/b2" to="." method="onClickAddUnit" binds= [ 101 ]]
+[connection signal="pressed" from="MainGroup/pUnitEdit/vbc/Control/GridContainer/b3" to="." method="onClickAddUnit" binds= [ 102 ]]
+[connection signal="pressed" from="MainGroup/pUnitEdit/vbc/Control/GridContainer/b4" to="." method="onClickAddUnit" binds= [ 103 ]]
+[connection signal="value_changed" from="MainGroup/pUnitEdit/vbc/hbc/slPlayerId" to="." method="onEditIdPlayer"]
+[connection signal="pressed" from="MainGroup/pSaveData/panel/vbc/vbc/hbc/buCancel" to="." method="onClickSaveButton" binds= [ false ]]
+[connection signal="pressed" from="MainGroup/pSaveData/panel/vbc/vbc/hbc/buOk" to="." method="onClickSaveButton" binds= [ true ]]
+[connection signal="pressed" from="MainGroup/pEnterGame/buSelectMap" to="." method="onClickCreateGameSelectMap"]
+[connection signal="pressed" from="MainGroup/pEnterGame/buCreate" to="." method="onClickCreateGame"]
+[connection signal="pressed" from="MainGroup/pEnterGame/buConnect" to="." method="onClickJoin"]
+[connection signal="pressed" from="MainGroup/pEnterGame/buExit" to="." method="onClickExit"]
+[connection signal="pressed" from="MainGroup/pLobby/buQuit" to="." method="onClickExit"]
+[connection signal="pressed" from="MainGroup/pLobby/buOK" to="." method="onClickReady"]
+[connection signal="loadTerrain" from="MainGroup/SubPanelLoadTerrainData" to="." method="onClickLoadButton"]

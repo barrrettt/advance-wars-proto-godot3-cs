@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Units/Unit.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/WorldMap/TileSetMapTerrain.res" type="TileSet" id=2]
+[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/WorldMap/sprites/character_grey.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 0.0392157, 1, 0.0078125, 0.0078125, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 2
+outline_color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+font_data = ExtResource( 3 )
+
+[node name="Unit" type="Node2D"]
+script = ExtResource( 1 )
+navAgentType = 2
+maxMovePoints = 20
+alcanzeMaximoDisparo = 2
+
+[node name="TmZone" type="TileMap" parent="."]
+position = Vector2( -16, -16 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 8
+format = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 0, 0, 20, 0 )
+default_color = Color( 0.4, 0.501961, 1, 1 )
+gradient = SubResource( 1 )
+texture_mode = 137
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="BarHp" type="Control" parent="."]
+editor/display_folded = true
+visible = false
+margin_left = -10.193
+margin_top = -25.0
+margin_right = 9.807
+margin_bottom = -21.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="crBack" type="ColorRect" parent="BarHp"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="crLevel" type="ColorRect" parent="BarHp"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -1.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="lblHitPoints" type="Label" parent="."]
+visible = false
+margin_left = -20.0
+margin_top = -40.0
+margin_right = 20.0
+margin_bottom = -20.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "-100"
+
+[node name="spColorPlayer" type="Sprite" parent="."]
+visible = false
+self_modulate = Color( 0.968627, 1, 0, 1 )
+position = Vector2( 0, 12 )
+rotation = -1.5708
+scale = Vector2( 0.116593, 0.1875 )
+texture = ExtResource( 4 )
