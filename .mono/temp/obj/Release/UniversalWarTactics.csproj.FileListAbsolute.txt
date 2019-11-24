@@ -1,0 +1,6 @@
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\bin\Release\UniversalWarTactics.dll
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\bin\Release\UniversalWarTactics.pdb
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Release\UniversalWarTactics.csprojAssemblyReference.cache
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Release\UniversalWarTactics.csproj.CoreCompileInputs.cache
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Release\UniversalWarTactics.dll
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Release\UniversalWarTactics.pdb
