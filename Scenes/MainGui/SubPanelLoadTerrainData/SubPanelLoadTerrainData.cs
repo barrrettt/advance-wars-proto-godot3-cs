@@ -16,7 +16,7 @@ public class SubPanelLoadTerrainData : Panel{
     public override void _Ready() {
         list = GetNode("panel/vbc/vbc/Panel/ScrollContainer/list") as VBoxContainer;
         lblSelectedPath = GetNode("panel/vbc/vbc/lblSelectedPath") as Label;
-        lblSelectedPath.SetText("");
+        lblSelectedPath.Text= "";
 
         poblateList();
     }
@@ -46,7 +46,7 @@ public class SubPanelLoadTerrainData : Panel{
         //poblate list with buttons
         foreach(string fn in fileNames){
             Button buFile = new Button();
-            buFile.SetText(fn);
+            buFile.Text=(fn);
             buFile.RectMinSize = new Vector2(0,30f);
             Godot.Collections.Array data = new Godot.Collections.Array();
             data.Add(fn);
@@ -58,12 +58,12 @@ public class SubPanelLoadTerrainData : Panel{
     
     //onCLICK
     public void onCLickFileButton(string name){
-        lblSelectedPath.SetText(name);
+        lblSelectedPath.Text=(name);
     }
 
     public void onClickDelete(){
-        string fileName = lblSelectedPath.GetText();
-        lblSelectedPath.SetText("");
+        string fileName = lblSelectedPath.Text;
+        lblSelectedPath.Text=("");
         if (fileName == "")return;
 
         Directory dir = new Directory();
@@ -72,14 +72,14 @@ public class SubPanelLoadTerrainData : Panel{
     }
 
     public void onClickCancel(){
-        SetVisible(false);
+        Visible = (false);
         EmitSignal("loadTerrain",""); //nada
     }
 
     public void onClickOk(){
-        string fileName = lblSelectedPath.GetText();
+        string fileName = lblSelectedPath.Text;
         if (fileName == "")return;
-        SetVisible(false);
+        Visible = (false);
         EmitSignal("loadTerrain",fileName); //coge los datos
     }
 

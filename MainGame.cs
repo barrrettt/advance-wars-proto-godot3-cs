@@ -14,8 +14,7 @@ public class MainGame : Node2D{
         //Input.SetMouseMode(Input.MouseMode.Confined);
 
         //maxi?
-        //OS.SetWindowFullscreen(true);
-        OS.SetWindowMaximized(true);
+        OS.WindowMaximized = true;
 
         //load first scene directly
         PackedScene packedScene = (PackedScene) GD.Load("res://Scenes/MenuMain/MainMenu.tscn");//main menu
@@ -23,5 +22,4 @@ public class MainGame : Node2D{
         AddChild(packedScene.Instance());
     }
     
-
 }

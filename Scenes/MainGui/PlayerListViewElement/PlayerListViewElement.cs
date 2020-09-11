@@ -23,7 +23,7 @@ public class PlayerListViewElement : ColorRect{
     public override void _Process(float delta){
         time +=delta;
         
-        crIsActual.SetVisible(isActual);
+        crIsActual.Visible = isActual;
         if(isActual){
             float value = (Mathf.Cos(time*10)*0.2f)+0.5f;
             crIsActual.Color = new Color(value,defaultColor.g,defaultColor.b,defaultColor.a);
@@ -36,9 +36,9 @@ public class PlayerListViewElement : ColorRect{
 
     public void setData(string dataPlayer){
         string[] data = dataPlayer.Split(";");
-        lblNamePlayer.SetText("PLAYED ID: "+ data[0]);
-        lblPlayerType.SetText("TYPE: " + (Player.TYPEPLAYER)int.Parse(data[1]) );
-        lblDetailPlayer.SetText(String.Format("I:{0}(+{1}) U:{2}",data[2],data[3],data[4] ));
+        lblNamePlayer.Text=("PLAYED ID: "+ data[0]);
+        lblPlayerType.Text=("TYPE: " + (Player.TYPEPLAYER)int.Parse(data[1]) );
+        lblDetailPlayer.Text=(String.Format("I:{0}(+{1}) U:{2}",data[2],data[3],data[4] ));
     }
 
 }

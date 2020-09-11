@@ -182,7 +182,7 @@ public class MainGui : Node{
         vbcTerrainDatas = GetNode("MainGroup/pLobby/crT/vbc") as VBoxContainer;
 
         //INIT
-        pUnitInfo.SetVisible(false);
+        pUnitInfo.Visible = false;
 
         //OK
         GD.Print("GUI ready");
@@ -199,7 +199,7 @@ public class MainGui : Node{
     //CALL BACK SIGNALS
     public void updateviewTimes(float gameTime, float turnTime){
         //invoked by Game
-        lblTime.SetText( String.Format("TIME: {0}", Mathf.Floor(gameTime).ToString()));
+        lblTime.Text=( String.Format("TIME: {0}", Mathf.Floor(gameTime).ToString()));
         pbTurnTime.Value = turnTime;
 
     }
@@ -222,37 +222,37 @@ public class MainGui : Node{
     }
 
     public void updatePositionView(Vector2 pos, int[] data){
-        lblTerrain.SetText(String.Format("{0},{1}",pos.x,pos.y));
-        lblTerrainDetail.SetText(String.Format("Terrain {0}\nDetail {1} \nH:{2}, Ro {3},Ri {4} ",
+        lblTerrain.Text=(String.Format("{0},{1}",pos.x,pos.y));
+        lblTerrainDetail.Text=(String.Format("Terrain {0}\nDetail {1} \nH:{2}, Ro {3},Ri {4} ",
             data[0], data[1],  data[2], data[3], data[4]
             ));
         
 
         for (int i = 0; i<imagesTerrain.Length;i++){
-            imagesTerrain[i].SetVisible(data[0] == i);
+            imagesTerrain[i].Visible=(data[0] == i);
         }
     }
 
     public void updateSelectedOnMap(Vector2 pos, string[] datas){
         if (datas == null){
-            pUnitInfo.SetVisible(false);
+            pUnitInfo.Visible=(false);
             return;
         }
-        pUnitInfo.SetVisible (datas[0] != "None"); 
+        pUnitInfo.Visible= (datas[0] != "None"); 
 
-        lblUnit.SetText("ID: " + datas[0]);  //nombre,position,player,movimientos
+        lblUnit.Text=("ID: " + datas[0]);  //nombre,position,player,movimientos
         string detailText = String.Format(
             "Pos: {0},{1} \nPlayer: {2} \nMovePoints: {3}",
             pos.x,pos.y,datas[1],datas[2]);
 
-        lblUnitDetail.SetText(detailText);
+        lblUnitDetail.Text=(detailText);
 
         //unit image
-        foreach (Node2D n in unitsViews) n.SetVisible(false);
+        foreach (Node2D n in unitsViews) n.Visible=(false);
         switch(datas[0]){
-            case "0": unitsViews[0].SetVisible(true); break;
-            case "1": unitsViews[1].SetVisible(true); break;
-            case "2": unitsViews[2].SetVisible(true); break;
+            case "0": unitsViews[0].Visible=(true); break;
+            case "1": unitsViews[1].Visible=(true); break;
+            case "2": unitsViews[2].Visible=(true); break;
         }
 
     }
@@ -262,8 +262,8 @@ public class MainGui : Node{
         string strTurnNum = "TURN: " + turnNum;
         string strPlayerTurn = "Actual Player: " + idPlayerActual;
 
-        lblTurnNum.SetText(strTurnNum);
-        lblActualPlayer.SetText(strPlayerTurn);
+        lblTurnNum.Text=(strTurnNum);
+        lblActualPlayer.Text=(strPlayerTurn);
 
         if (isLocal){
             isLocalPlayerNow = true;
@@ -281,8 +281,8 @@ public class MainGui : Node{
         }
        
         //animation 
-        lblAnimTurnNum.SetText(strTurnNum); 
-        lblAnimPlayerName.SetText(strPlayerTurn); 
+        lblAnimTurnNum.Text=(strTurnNum); 
+        lblAnimPlayerName.Text=(strPlayerTurn); 
         animTurn.Play("show"); 
 
     }
@@ -306,9 +306,9 @@ public class MainGui : Node{
                 players[i].unitsCount =  playerUnits[i];
 
                 //view
-                lblChild.SetText(String.Format("P{0}.{1} Units:{2}", i, players[i].playerType, players[i].unitsCount));
-                lblChild.SetVisible(true);
-                buP.SetVisible(true);
+                lblChild.Text=(String.Format("P{0}.{1} Units:{2}", i, players[i].playerType, players[i].unitsCount));
+                lblChild.Visible=(true);
+                buP.Visible=(true);
 
                 //connect onclick
                 if(!buP.IsConnected("pressed",this,"onClickChangeTypePlayer")){
@@ -320,26 +320,26 @@ public class MainGui : Node{
                 maxPlayerOnMap++;
 
             }else{
-                lblChild.SetVisible(false);
-                buP.SetVisible(false);
+                lblChild.Visible=(false);
+                buP.Visible=(false);
             }
         }
 
         //datas terrain show view
-        lblTerrainDataSize.SetText("Map: "+sizeMap+" x "+sizeMap); 
+        lblTerrainDataSize.Text=("Map: "+sizeMap+" x "+sizeMap); 
 
-        vbcTerrainDatas.GetChild<Label>(0).SetText("Deep Water: " + terrain[0]);
-        vbcTerrainDatas.GetChild<Label>(1).SetText("Water: " + terrain[1]);
-        vbcTerrainDatas.GetChild<Label>(2).SetText("Ground: " + terrain[2]);
-        vbcTerrainDatas.GetChild<Label>(3).SetText("Glass: " + terrain[3]);
-        vbcTerrainDatas.GetChild<Label>(4).SetText("Forest: " + terrain[4]);
-        vbcTerrainDatas.GetChild<Label>(5).SetText("Hill: " + terrain[5]);
-        vbcTerrainDatas.GetChild<Label>(6).SetText("Mountain: " + terrain[6]);
-        vbcTerrainDatas.GetChild<Label>(7).SetText("Top: " + terrain[7]);
+        vbcTerrainDatas.GetChild<Label>(0).Text=("Deep Water: " + terrain[0]);
+        vbcTerrainDatas.GetChild<Label>(1).Text=("Water: " + terrain[1]);
+        vbcTerrainDatas.GetChild<Label>(2).Text=("Ground: " + terrain[2]);
+        vbcTerrainDatas.GetChild<Label>(3).Text=("Glass: " + terrain[3]);
+        vbcTerrainDatas.GetChild<Label>(4).Text=("Forest: " + terrain[4]);
+        vbcTerrainDatas.GetChild<Label>(5).Text=("Hill: " + terrain[5]);
+        vbcTerrainDatas.GetChild<Label>(6).Text=("Mountain: " + terrain[6]);
+        vbcTerrainDatas.GetChild<Label>(7).Text=("Top: " + terrain[7]);
 
-        vbcTerrainDatas.GetChild<Label>(8).SetText("River: " + terrain[8]);
-        vbcTerrainDatas.GetChild<Label>(9).SetText("Road: " + terrain[9]);
-        vbcTerrainDatas.GetChild<Label>(10).SetText("Building: " + terrain[10]);
+        vbcTerrainDatas.GetChild<Label>(8).Text=("River: " + terrain[8]);
+        vbcTerrainDatas.GetChild<Label>(9).Text=("Road: " + terrain[9]);
+        vbcTerrainDatas.GetChild<Label>(10).Text=("Building: " + terrain[10]);
 
 
     }
@@ -350,40 +350,40 @@ public class MainGui : Node{
 
         switch(index){
             case 0: //SUBPANEL TERRAIN EDITION
-                pIndiEdit.SetVisible(!pIndiEdit.IsVisible());
-                pGenEdit.SetVisible(false);
-                pUnitEdit.SetVisible(false);
-                pSaveData.SetVisible(false);
-                plLoadData.SetVisible(false);
+                pIndiEdit.Visible=(!pIndiEdit.Visible);
+                pGenEdit.Visible=(false);
+                pUnitEdit.Visible=(false);
+                pSaveData.Visible=(false);
+                plLoadData.Visible=(false);
                 break;
             case 1: //SUBPANEL GENERACION
-                pIndiEdit.SetVisible(false);
-                pGenEdit.SetVisible(!pGenEdit.IsVisible());
-                pUnitEdit.SetVisible(false);
-                pSaveData.SetVisible(false);
-                plLoadData.SetVisible(false);
+                pIndiEdit.Visible=(false);
+                pGenEdit.Visible=(!pGenEdit.Visible);
+                pUnitEdit.Visible=(false);
+                pSaveData.Visible=(false);
+                plLoadData.Visible=(false);
                 break;
             case 2: //SUBPANEL UNIDADES
-                pIndiEdit.SetVisible(false);
-                pGenEdit.SetVisible(false);
-                pUnitEdit.SetVisible(!pUnitEdit.IsVisible());
-                pSaveData.SetVisible(false);
-                plLoadData.SetVisible(false);
+                pIndiEdit.Visible=(false);
+                pGenEdit.Visible=(false);
+                pUnitEdit.Visible=(!pUnitEdit.Visible);
+                pSaveData.Visible=(false);
+                plLoadData.Visible=(false);
                 break;
             case 3: //SAVE
-                pIndiEdit.SetVisible(false);
-                pGenEdit.SetVisible(false);
-                pUnitEdit.SetVisible(false);
-                pSaveData.SetVisible(!pSaveData.IsVisible());
-                plLoadData.SetVisible(false);
+                pIndiEdit.Visible=(false);
+                pGenEdit.Visible=(false);
+                pUnitEdit.Visible=(false);
+                pSaveData.Visible=(!pSaveData.Visible);
+                plLoadData.Visible=(false);
                 EmitSignal("guiFocus",true); //avisa que la gui tiene el foco del input
                 break;
             case 4: //LOAD
-                pIndiEdit.SetVisible(false);
-                pGenEdit.SetVisible(false);
-                pUnitEdit.SetVisible(false);
-                pSaveData.SetVisible(false);
-                plLoadData.SetVisible(!plLoadData.IsVisible());
+                pIndiEdit.Visible=(false);
+                pGenEdit.Visible=(false);
+                pUnitEdit.Visible=(false);
+                pSaveData.Visible=(false);
+                plLoadData.Visible=(!plLoadData.Visible);
                 plLoadData.poblateList();
                 EmitSignal("guiFocus",true); //avisa que la gui tiene el foco del input
                 break;
@@ -396,7 +396,7 @@ public class MainGui : Node{
         GetTree().SetInputAsHandled();//no repite el click en otros inputs
 
         EmitSignal("editTerrainData",index);
-        lblTerrainEditorSelected.SetText(String.Format("Actual selection: {0}",index));
+        lblTerrainEditorSelected.Text=(String.Format("Actual selection: {0}",index));
     }
 
     public void onClickGenerateTerrain(){
@@ -406,26 +406,26 @@ public class MainGui : Node{
         float[] data = new float[14];
         
         //main
-        isOk &= float.TryParse(txtSeed.GetText(),out data[0]); 
-        isOk &= float.TryParse(txtSizeMap.GetText(),out data[1]); 
+        isOk &= float.TryParse(txtSeed.Text,out data[0]); 
+        isOk &= float.TryParse(txtSizeMap.Text,out data[1]); 
         
         //noise values
-        isOk &= float.TryParse(txtOctaves.GetText(),out data[2]); 
-        isOk &= float.TryParse(txtPeriod.GetText(),out data[3]); 
-        isOk &= float.TryParse(txtLacunarity.GetText(),out data[4]); 
-        isOk &= float.TryParse(txtPersistence.GetText(),out data[5]); 
+        isOk &= float.TryParse(txtOctaves.Text,out data[2]); 
+        isOk &= float.TryParse(txtPeriod.Text,out data[3]); 
+        isOk &= float.TryParse(txtLacunarity.Text,out data[4]); 
+        isOk &= float.TryParse(txtPersistence.Text,out data[5]); 
 
         //minHeights
-        data[6] = slA1.GetValue();
-        data[7] = slA2.GetValue();
-        data[8] = slA3.GetValue();
-        data[9] = slA4.GetValue();
-        data[10]= slA5.GetValue();
-        data[11]= slA6.GetValue();
-        data[12]= slA7.GetValue();
+        data[6] = (float)slA1.Value;
+        data[7] = (float)slA2.Value;
+        data[8] = (float)slA3.Value;
+        data[9] = (float)slA4.Value;
+        data[10]= (float)slA5.Value;
+        data[11]= (float)slA6.Value;
+        data[12]= (float)slA7.Value;
 
         //rivers
-        data[13]= slR.GetValue();
+        data[13]= (float)slR.Value;
 
         if (isOk){
             EmitSignal("generateTerrain",data);
@@ -438,13 +438,13 @@ public class MainGui : Node{
     public void onClickAddUnit(int index){
         GetTree().SetInputAsHandled();//no repite el click en otros inputs
         EmitSignal("editTerrainData",index);
-        lblUnitEditorSelected.SetText(String.Format("Actual selection: {0}",index));
+        lblUnitEditorSelected.Text = String.Format("Actual selection: {0}",index);
     }
     
      //units player owner
     public void onEditIdPlayer(float value){
         int id = (int) value;
-        lblPlayerId.SetText("Player id: " + id);
+        lblPlayerId.Text=("Player id: " + id);
         EmitSignal("playerIdEditonChange",id);
     }
 
@@ -453,7 +453,7 @@ public class MainGui : Node{
         if (save){
 
             if (txtNameData.Text.Length>0){
-                EmitSignal("saveTerrain",txtNameData.GetText()); 
+                EmitSignal("saveTerrain",txtNameData.Text); 
 
             }else{
                  GD.Print("NO VALID NAME");
@@ -468,7 +468,7 @@ public class MainGui : Node{
     public void onClickLoadButton(string nameFile){
         if (nameFile != ""){
             actualLoadFile = nameFile;
-            lblEnterGameMap.SetText("Create game, map: " + actualLoadFile);
+            lblEnterGameMap.Text=("Create game, map: " + actualLoadFile);
 
         }else{
             GD.Print("NO LOAD");
@@ -477,7 +477,7 @@ public class MainGui : Node{
 
 
         //world map recupera foco?
-        if(!pEnterGame.IsVisible() && !pLobby.IsVisible()){
+        if(!pEnterGame.Visible && !pLobby.Visible){
 
             if(nameFile!=""){
                 EmitSignal("loadTerrain",nameFile);
@@ -492,15 +492,15 @@ public class MainGui : Node{
     public void onClickCreateGame(){
 
         if (!actualLoadFile.Empty()){
-            pEnterGame.SetVisible(false);
-            pLobby.SetVisible(true);
+            pEnterGame.Visible=(false);
+            pLobby.Visible=(true);
             //create worldmap and wait for call back for collect data.
             EmitSignal("loadTerrain",actualLoadFile);
         }
     }
 
     public void onClickCreateGameSelectMap(){
-        plLoadData.SetVisible(!plLoadData.IsVisible());
+        plLoadData.Visible=(!plLoadData.Visible);
     }
 
     public void onClickJoin(){
@@ -518,7 +518,7 @@ public class MainGui : Node{
 
         //view update
         vbcPlayerUnitsCounts.GetChild<Label>(idPlayer)
-        .SetText(String.Format("P{0}.{1} Units:{2}", idPlayer, players[idPlayer].playerType, players[idPlayer].unitsCount));
+        .Text=(String.Format("P{0}.{1} Units:{2}", idPlayer, players[idPlayer].playerType, players[idPlayer].unitsCount));
 
     }
 
@@ -551,7 +551,7 @@ public class MainGui : Node{
         }
 
         //change to gui GAME
-        pLobby.SetVisible(false);
+        pLobby.Visible=(false);
         setGameStyle(1);
 
         //send player actives to gui player barr
@@ -601,27 +601,27 @@ public class MainGui : Node{
         //editor, game or lobby?
         switch(style){
             case 0://editor
-                pTaps.SetVisible(true);
-                pTurn.SetVisible(false);
-                pPlayers.SetVisible(false);
-                pUnitsControl.SetVisible(false);
-                pEnterGame.SetVisible(false);
+                pTaps.Visible=(true);
+                pTurn.Visible=(false);
+                pPlayers.Visible=(false);
+                pUnitsControl.Visible=(false);
+                pEnterGame.Visible=(false);
             break;
 
             case 1://game
-                pTaps.SetVisible(false);
-                pTurn.SetVisible(true);
-                pPlayers.SetVisible(true);
-                pUnitsControl.SetVisible(true);
-                pEnterGame.SetVisible(false);
+                pTaps.Visible=(false);
+                pTurn.Visible=(true);
+                pPlayers.Visible=(true);
+                pUnitsControl.Visible=(true);
+                pEnterGame.Visible=(false);
             break;
 
             case 2: //enterGame
-                pTaps.SetVisible(false);
-                pTurn.SetVisible(false);
-                pPlayers.SetVisible(false);
-                pUnitsControl.SetVisible(false);
-                pEnterGame.SetVisible(true);
+                pTaps.Visible=(false);
+                pTurn.Visible=(false);
+                pPlayers.Visible=(false);
+                pUnitsControl.Visible=(false);
+                pEnterGame.Visible=(true);
                 EmitSignal("guiFocus",true); //avisa que la gui tiene el foco del input
             break;
 

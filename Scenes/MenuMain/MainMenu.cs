@@ -19,7 +19,7 @@ public class MainMenu : CanvasLayer{
     public void onCLickBuEditor(){
         ScenesLoader scenesLoader = GD.Load<PackedScene>("res://Scenes/SceneLoader/ScenesLoader.tscn").Instance() as ScenesLoader;
         AddChild(scenesLoader);
-        scenesLoader.loadScene("res://Scenes/SceneEditor.tscn");//goto editor
+        scenesLoader.loadScene("res://Scenes/Editor/SceneEditor.tscn");//goto editor
     }
 
     public void onClickBuExit(){

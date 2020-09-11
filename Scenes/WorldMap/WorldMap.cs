@@ -11,6 +11,8 @@ public class WorldMap : Node2D{
     [Signal] public delegate void order(int playerId, int unitX, int unitY, int destX, int destY, int orderType); //mapa generado, avisa a camara.
     [Signal] public delegate void orderFinish(int playerId); //order and animation is done. for IA and GUI.
     [Signal] public delegate void unitKill(int playerId); //unit kill
+    
+    [Signal] public delegate void sendOrder(PlayerOrder order);
 
     //referencias
     private TileMap tmTerrain;  private TileMap tmDetails; private TileMap tmBigDetails; private TileMap tmBuildings;
@@ -95,7 +97,7 @@ public class WorldMap : Node2D{
 
         //indicators init
         actualPoint = Vector2.One*-1;
-        selectionViewer.SetVisible(false);
+        selectionViewer.Visible=(false);
         dataTerrain.navigation.createPath(0,0,0,0,0);//borra linea en rios
 
         //THREATS
@@ -225,7 +227,8 @@ public class WorldMap : Node2D{
                     if (tryOrder(unitX, unitY, destX, destY, isMove?0:1)){
                         //newt emit order intent to game controler.
                         EmitSignal("order", playerActual, unitX, unitY, destX, destY, isMove?0:1);
-                        
+                        EmitSignal("sendOrder", new PlayerOrder(playerActual, unitX, unitY, destX, destY, isMove?0:1));
+
                         //debug
                         string strOrder = string.Format("Order: player {0}. unitX {1}. unitY {2}. DestinoX {3}. DestinoX {4}. OrderType {5}.",
                         playerActual, unitX, unitY, destX, destY, isMove?0:1);
@@ -379,7 +382,7 @@ public class WorldMap : Node2D{
         //SELECCION
         if (tilePos != actualPoint){
             actualPoint = tilePos;
-            selectionViewer.SetVisible(true);
+            selectionViewer.Visible=(true);
             
             if (selectedUnit!= null){
                 selectedUnit.unSelectMe();
@@ -423,7 +426,7 @@ public class WorldMap : Node2D{
 
     public void deseleccionar(){
         actualPoint = Vector2.One*-1;
-        selectionViewer.SetVisible(false);
+        selectionViewer.Visible=(false);
 
         if (selectedUnit!=null){
             selectedUnit.unSelectMe();
@@ -524,7 +527,7 @@ public class WorldMap : Node2D{
     //NEW MAP: create natural worlds & signal
     public void generateTerrain(float[] data){
         //init
-        selectionViewer.SetVisible(false);
+        selectionViewer.Visible=(false);
         actualSelectionPoint = Vector2.Zero;
         
         //delete old units view
@@ -555,7 +558,7 @@ public class WorldMap : Node2D{
         }
 
         //open
-        Error error = file.Open(string.Format("{0}//{1}.dat",path,name),  (int)File.ModeFlags.Write);
+        Error error = file.Open(string.Format("{0}//{1}.dat",path,name), File.ModeFlags.Write);
         if (error!= Error.Ok) return;
 
         //save  
@@ -608,7 +611,7 @@ public class WorldMap : Node2D{
         }
 
         //init
-        selectionViewer.SetVisible(false);
+        selectionViewer.Visible=(false);
         actualSelectionPoint = Vector2.Zero;
         
         //delete old units view
@@ -1954,5 +1957,23 @@ public class Navigation{
             }
         }
     }
+
+
+}
+
+//SIGNAL SEND DATAS
+public class PlayerOrder: Node{
+    public int playerId, unitX, unitY, destX, destY, orderType;
+
+    public PlayerOrder(int playerId, int unitX, int unitY, int destX, int destY, int orderType){
+        this.playerId = playerId;
+        this.unitX = unitX;
+        this.unitY = unitY;
+        this.destX = destX;
+        this.destY = destY;
+        this.orderType = orderType;
+    }
+
+    
 
 }

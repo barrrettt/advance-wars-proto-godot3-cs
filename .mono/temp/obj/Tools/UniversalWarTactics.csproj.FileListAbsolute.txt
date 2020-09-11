@@ -1,6 +1,6 @@
-E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\bin\Tools\UniversalWarTactics.dll
-E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\bin\Tools\UniversalWarTactics.pdb
-E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Tools\UniversalWarTactics.csprojAssemblyReference.cache
-E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Tools\UniversalWarTactics.csproj.CoreCompileInputs.cache
-E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Tools\UniversalWarTactics.dll
-E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Tools\UniversalWarTactics.pdb
+E:\GODOT\Universal War Tactics\.mono\temp\bin\Tools\UniversalWarTactics.dll
+E:\GODOT\Universal War Tactics\.mono\temp\bin\Tools\UniversalWarTactics.pdb
+E:\GODOT\Universal War Tactics\.mono\temp\obj\Tools\UniversalWarTactics.csprojAssemblyReference.cache
+E:\GODOT\Universal War Tactics\.mono\temp\obj\Tools\UniversalWarTactics.csproj.CoreCompileInputs.cache
+E:\GODOT\Universal War Tactics\.mono\temp\obj\Tools\UniversalWarTactics.dll
+E:\GODOT\Universal War Tactics\.mono\temp\obj\Tools\UniversalWarTactics.pdb

@@ -11,8 +11,11 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
+    <GodotProjectGeneratorVersion>1.0.0.0</GodotProjectGeneratorVersion>
+    <ApiConfiguration Condition=" '$(Configuration)' != 'ExportRelease' ">Debug</ApiConfiguration>
+    <ApiConfiguration Condition=" '$(Configuration)' == 'ExportRelease' ">Release</ApiConfiguration>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ExportDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
@@ -21,14 +24,14 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ExportRelease|AnyCPU' ">
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Tools|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
@@ -39,12 +42,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GodotSharp">
-      <HintPath>$(ProjectDir)\.mono\assemblies\GodotSharp.dll</HintPath>
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>
     </Reference>
-    <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Tools' ">
-      <HintPath>$(ProjectDir)\.mono\assemblies\GodotSharpEditor.dll</HintPath>
+    <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Debug' ">
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharpEditor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -58,10 +61,16 @@
     <Compile Include="Scenes\MainGui\PlayerListViewElement\PlayerListViewElement.cs" />
     <Compile Include="Scenes\MainGui\SubPanelLoadTerrainData\SubPanelLoadTerrainData.cs" />
     <Compile Include="Scenes\MenuMain\MainMenu.cs" />
-    <Compile Include="Scenes\SceneEditor.cs" />
+    <Compile Include="Scenes\Editor\SceneEditor.cs" />
     <Compile Include="Scenes\SceneLoader\ScenesLoader.cs" />
     <Compile Include="Scenes\Units\Unit.cs" />
     <Compile Include="Scenes\WorldMap\WorldMap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies">
+      <Version>1.0.0</Version>
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

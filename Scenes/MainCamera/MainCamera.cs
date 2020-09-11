@@ -31,7 +31,7 @@ public class MainCamera : Node2D{
     public override void _Ready() {
         camera = GetNode<Camera2D>("Camera2D");
         camera.MakeCurrent();
-        camera.SetZoom( Vector2.One * maxZoom);//max
+        camera.Zoom = Vector2.One * maxZoom;//max
         zoom =  maxZoom;
 
         //observacion para cambion de resolucion

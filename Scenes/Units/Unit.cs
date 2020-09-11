@@ -80,17 +80,17 @@ public class Unit : Node2D{
         lblHitPoints = GetNode("lblHitPoints") as Label;
         hpBarr = GetNode("BarHp") as Control;
         crLevelHp = GetNode("BarHp/crLevel") as ColorRect;
-        crMaxSize = crLevelHp.GetSize().x;
+        crMaxSize = crLevelHp.RectSize.x;
 
         //init idle
-        animation.SetCurrentAnimation("Idle");
-        animation.SetSpeedScale(1.9f + (float)GD.RandRange(0.0f,0.2f));
+        animation.CurrentAnimation = "Idle";
+        animation.PlaybackSpeed = (1.9f + (float)GD.RandRange(0.0f,0.2f));
 
         //anim scale
-        initScale = baseNode.GetScale();
+        initScale = baseNode.Scale;
         
         //line
-        line2D.SetVisible(true);
+        line2D.Visible = true;
         line2D.ClearPoints();
 
         //Color player actual
@@ -105,18 +105,18 @@ public class Unit : Node2D{
         Vector2 mousePos = GetGlobalMousePosition();
 
         //efecto de aumento
-        float dist2 = ( mousePos- GetPosition()).LengthSquared();
+        float dist2 = ( mousePos- Position).LengthSquared();
         if(dist2<300f){
-            baseNode.SetScale(initScale * 1.2f);
+            baseNode.Scale = (initScale * 1.2f);
         }else{
-            baseNode.SetScale(initScale);
+            baseNode.Scale = initScale;
         }
 
         //flipH
         if (flipH){
-            Vector2 scale = baseNode.GetScale();
+            Vector2 scale = baseNode.Scale;
             Vector2 vFlip = (new Vector2(scale.x *-1f ,scale.y));
-            baseNode.SetScale(vFlip);
+            baseNode.Scale = vFlip;
         }
 
         //walk animation efect
@@ -522,7 +522,7 @@ public class Unit : Node2D{
     public void newTurn(int propietario){
 
         bool isMine = this.owerPlayer == propietario;
-        spPropietarioIndicator.SetVisible(isMine);//indicador de propiedad
+        spPropietarioIndicator.Visible=(isMine);//indicador de propiedad
         
         //restablece puntos de movimieto y fuego
         if (isMine){
@@ -562,17 +562,17 @@ public class Unit : Node2D{
         animation.Play("Hit");
         
         //hit text
-        lblHitPoints.SetVisible(true);
-        lblHitPoints.SetText("-"+hitPoints);
+        lblHitPoints.Visible=(true);
+        lblHitPoints.Text=("-"+hitPoints);
 
         //hp Barr
         float value = ((float)hp)/hpMax;
         value = Mathf.Clamp(value,0, 1f);
-        hpBarr.SetVisible(value < 1f);
-        crLevelHp.SetSize(new Vector2(value*crMaxSize,crLevelHp.GetSize().y));
+        hpBarr.Visible=(value < 1f);
+        crLevelHp.SetSize(new Vector2(value*crMaxSize,crLevelHp.RectSize.y));
     }
     public void animationHitFinish(){
-        lblHitPoints.SetVisible(false);
+        lblHitPoints.Visible=(false);
         
         if (hp>0){
             animation.Play("Idle"); 

@@ -36,8 +36,8 @@ public class ScenesLoader : ColorRect{
         
 
         //view
-        this.SetVisible(true);
-        this.pBarr.SetVisible(true);        
+        this.Visible = true;
+        this.pBarr.Visible = true;        
         anim.Play("fade");
         GD.Print("Loading " + path);
     }
@@ -84,11 +84,11 @@ public class ScenesLoader : ColorRect{
     private void updateLoadingProgress(){
         float progress = (float)(riLoader.GetStage()) / riLoader.GetStageCount();
         GD.Print("progress "+progress);
-        pBarr.SetValue(progress);
+        pBarr.Value=(progress);
     }
 
     private void instanceScene(PackedScene packedScene){
-        Node mainG = GetTree().GetRoot().GetNode("MainGame");
+        Node mainG = GetTree().Root.GetNode("MainGame");
         Node instance = packedScene.Instance();
         mainG.AddChild(instance);//cuelgo la instancia del nodo mainGame
         mainG.GetChild(0).QueueFree();//borro al hijo 1
