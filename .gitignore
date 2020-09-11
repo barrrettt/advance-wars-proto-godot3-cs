@@ -1,5 +1,6 @@
-.import/
+.import/*
 .mono/*
 .vscode/
 .builds/
 *.temp
+*.import

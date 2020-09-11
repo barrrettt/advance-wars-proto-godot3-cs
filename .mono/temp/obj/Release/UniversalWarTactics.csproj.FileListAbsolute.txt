@@ -1,6 +1,0 @@
-E:\GODOT\Universal War Tactics\.mono\temp\bin\Release\UniversalWarTactics.dll
-E:\GODOT\Universal War Tactics\.mono\temp\bin\Release\UniversalWarTactics.pdb
-E:\GODOT\Universal War Tactics\.mono\temp\obj\Release\UniversalWarTactics.csprojAssemblyReference.cache
-E:\GODOT\Universal War Tactics\.mono\temp\obj\Release\UniversalWarTactics.csproj.CoreCompileInputs.cache
-E:\GODOT\Universal War Tactics\.mono\temp\obj\Release\UniversalWarTactics.dll
-E:\GODOT\Universal War Tactics\.mono\temp\obj\Release\UniversalWarTactics.pdb
