@@ -2,3 +2,4 @@
 .mono/*
 .vscode/
 .builds/
+*.temp
