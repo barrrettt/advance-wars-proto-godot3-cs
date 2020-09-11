@@ -4,3 +4,9 @@ E:\GODOT\Universal War Tactics\.mono\temp\bin\Debug\UniversalWarTactics.dll
 E:\GODOT\Universal War Tactics\.mono\temp\bin\Debug\UniversalWarTactics.pdb
 E:\GODOT\Universal War Tactics\.mono\temp\obj\Debug\UniversalWarTactics.dll
 E:\GODOT\Universal War Tactics\.mono\temp\obj\Debug\UniversalWarTactics.pdb
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\bin\Debug\UniversalWarTactics.dll
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\bin\Debug\UniversalWarTactics.pdb
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Debug\UniversalWarTactics.csprojAssemblyReference.cache
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Debug\UniversalWarTactics.csproj.CoreCompileInputs.cache
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Debug\UniversalWarTactics.dll
+E:\GITHUB\Tactics2d-Godot-C-Conceptual-\.mono\temp\obj\Debug\UniversalWarTactics.pdb
